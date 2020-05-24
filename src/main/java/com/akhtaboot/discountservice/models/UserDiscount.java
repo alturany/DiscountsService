@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserType {
+public class UserDiscount {
     @Id
     private Long id;
     @Column(unique = true)

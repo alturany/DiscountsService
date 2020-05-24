@@ -1,6 +1,6 @@
 package com.akhtaboot.discountservice.models;
 
-import com.akhtaboot.discountservice.models.UserType.TypeEnum;
+import com.akhtaboot.discountservice.models.UserDiscount.TypeEnum;
 import org.junit.jupiter.api.Test;
 
 
@@ -71,7 +71,7 @@ public class UserTest {
     public static User createUser(long id, TypeEnum type, Double discountPercent, LocalDate joinDate) {
         return User.builder()
                 .id(id)
-                .type(UserType.builder()
+                .userDiscount(UserDiscount.builder()
                         .type(type)
                         .discountPercent(discountPercent)
                         .build())

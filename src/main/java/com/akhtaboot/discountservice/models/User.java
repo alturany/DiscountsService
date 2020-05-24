@@ -13,6 +13,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Period;
 
+import static com.akhtaboot.discountservice.models.UserDiscount.TypeEnum.*;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -24,26 +26,19 @@ public class User {
     @Id
     private Long id;
     @ManyToOne
-    private UserType type;
+    private UserDiscount userDiscount;
     @Column(nullable = false)
     private LocalDate joinDate;
 
     public BigDecimal getDiscountPercent() {
         double result;
-        final UserType type = getType();
-        switch (type.getType()) {
-            case EMPLOYEE:
-            case AFFILIATE:
-                result = type.getDiscountPercent();
-                break;
-            case NORMAL:
-                if( getCustomerPeriod().getYears() >= OLD_CUSTOMER_YEARS) {
-                    result = type.getDiscountPercent();
-                    break;
-                }
-            default:
-                result = 0.0;
-
+        final UserDiscount.TypeEnum type = getUserDiscount().getType();
+        if (type == EMPLOYEE || type == AFFILIATE) {
+            result = getUserDiscount().getDiscountPercent();
+        } else if (type == NORMAL && getCustomerPeriod().getYears() >= OLD_CUSTOMER_YEARS) {
+            result = getUserDiscount().getDiscountPercent();
+        } else {
+            result = 0.0;
         }
         return BigDecimal.valueOf(result);
     }

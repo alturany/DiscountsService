@@ -1,9 +1,9 @@
-INSERT INTO USER_TYPE (id, type, discount_percent) values
+INSERT INTO USER_DISCOUNT (id, type, discount_percent) values
     (1, 'EMPLOYEE', 0.3),
     (2, 'AFFILIATE', 0.1),
     (3, 'NORMAL', 0.05);
 
-INSERT INTO USER (id, join_date, type_id) values
+INSERT INTO USER (id, join_date, user_discount_id) values
     (1, '2012-09-17', 1),
     (2, '2012-09-17', 2),
     (3, '2012-09-17', 3),

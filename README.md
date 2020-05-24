@@ -1,5 +1,6 @@
 ### About:
 high level class diagram of domain model classes [here](https://app.creately.com/diagram/V7wQ3LqHsi6/edit) 
+
 SonarQube report [here](https://github.com/alturany/DiscountsService/blob/master/DiscountServiceSonarQube.pdf)
 ### Assumptions:
 1) Assumed that calculating the bill cost need not to update the DB even though in real projects it should, so accordingly the REST service used the method GET

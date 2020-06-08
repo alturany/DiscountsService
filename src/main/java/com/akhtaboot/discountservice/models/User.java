@@ -31,14 +31,10 @@ public class User {
     private LocalDate joinDate;
 
     public BigDecimal getDiscountPercent() {
-        double result;
+        double result = 0.0;
         final UserDiscount.TypeEnum type = getUserDiscount().getType();
-        if (type == EMPLOYEE || type == AFFILIATE) {
+        if (type == EMPLOYEE || type == AFFILIATE || (type == NORMAL && getCustomerPeriod().getYears() >= OLD_CUSTOMER_YEARS)) {
             result = getUserDiscount().getDiscountPercent();
-        } else if (type == NORMAL && getCustomerPeriod().getYears() >= OLD_CUSTOMER_YEARS) {
-            result = getUserDiscount().getDiscountPercent();
-        } else {
-            result = 0.0;
         }
         return BigDecimal.valueOf(result);
     }
